@@ -1,0 +1,24 @@
+{
+  "name": "mern-streaming-services-fullstack",
+  "version": "1.0.0",
+  "description": "Welcome to online entertainment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build",
+    "test": "jest"
+  },
+  "keywords": [
+    "mern",
+    "streaming",
+    "services",
+    "fullstack"
+  ],
+  "author": "Aubrey Jones",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "gitignore": "^0.7.0"
+  }
+}
