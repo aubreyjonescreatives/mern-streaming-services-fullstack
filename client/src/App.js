@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { useMemo } from "react"; 
+import { useSelector } from "react-redux";
+import {CssBaseline, ThemeProvider} from "@mui/material"; 
+import { createTheme } from "@mui/material/styles"; 
+import { themeSettings } from "./theme"; 
+import WatchFavorites from '../src/Pages/WatchFavorites/WatchFavorites.jsx';
+import WatchHome from '../src/Pages/WatchHome/WatchHome.jsx';
+import WatchProfile from '../src/Pages/WatchFavorites/WatchProfile.jsx';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+const Layout = () => {
+return (
+  <>
+  <Outlet />
+  </>
+)
+
+
 }
 
-export default App;
+
+const router = createBrowserRouter([
+  {
+    path: '/', 
+    element: <Layout />,
+
+    children: [
+      {
+        path: '/', 
+        element: <WatchHome />
+      },
+      {
+        path: '/favorites', 
+        element: <WatchFavorites />
+      }, 
+      {
+        path: '/profile/:userId', 
+        element: <WatchProfile />
+      }, 
+    ]
+  }
+])
+
+
+
+function App() {
+
+  const mode = useSelector((state) => state.mode); 
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]); 
+ // const isAuth = Boolean(useSelector((state) => state.token)); 
+ 
+   return (
+    <>
+    <ThemeProvider theme={theme}>
+     <CssBaseline />
+   <RouterProvider router={router}></RouterProvider>
+   </ThemeProvider>
+    </>
+   );
+ }
+ 
+ export default App;
