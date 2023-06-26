@@ -1,12 +1,9 @@
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import { useMemo } from "react"; 
-import { useSelector } from "react-redux";
-import {CssBaseline, ThemeProvider} from "@mui/material"; 
-import { createTheme } from "@mui/material/styles"; 
-import { themeSettings } from "./theme"; 
-import WatchFavorites from '../src/Pages/WatchFavorites/WatchFavorites.jsx';
-import WatchHome from '../src/Pages/WatchHome/WatchHome.jsx';
-import WatchProfile from '../src/Pages/WatchFavorites/WatchProfile.jsx';
+//import { useMemo } from "react"; 
+//import { useSelector } from "react-redux";
+import WatchFavorites from './Pages/WatchFavorites.jsx';
+import WatchHome from './Pages/WatchHome.jsx';
+import WatchProfile from './Pages/WatchProfile.jsx';
 
 
 
@@ -48,16 +45,14 @@ const router = createBrowserRouter([
 
 function App() {
 
-  const mode = useSelector((state) => state.mode); 
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]); 
+ // const mode = useSelector((state) => state.mode); 
+ // const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]); 
  // const isAuth = Boolean(useSelector((state) => state.token)); 
  
    return (
     <>
-    <ThemeProvider theme={theme}>
-     <CssBaseline />
+   
    <RouterProvider router={router}></RouterProvider>
-   </ThemeProvider>
     </>
    );
  }
